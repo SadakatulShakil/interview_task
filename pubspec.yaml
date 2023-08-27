@@ -55,6 +55,7 @@ dependencies:
   permission_handler: ^9.2.0
   flutter_inappwebview: ^5.4.3+7
   http: ^0.13.4
+  sqflite: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -79,8 +80,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-    - assets/icons/
-    - assets/vectors/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,71 +1,42 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:progress_indicators/progress_indicators.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import 'HomeScreen.dart';
 import 'login_screen.dart';
-
-class Splash extends StatefulWidget{
+class WelcomeScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => InitState();
-
+  _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class InitState extends State<Splash> {
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    print("running splash");
-    startTimer();
-    super.initState();
-  }
-
-  startTimer() async{
-    var duration = Duration(seconds: 5);
-    return new Timer(duration, homePageRoute);
-  }
-
-  homePageRoute(){
-    Navigator.pushReplacement(context, MaterialPageRoute(
-        builder: (context) => LoginScreen()
-    ));
-  }
+class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return initWidget();
-  }
-
-  Widget initWidget() {
     return Scaffold(
-      body: Stack(
+      backgroundColor: Colors.blue,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(
-            child: Container(
-              margin:  EdgeInsets.only(bottom: MediaQuery.of(context).size.height/4),
-              child: Image.asset("assets/images/icon.png", width: 200, height: 200),
+          Image.asset('assets/images/logo.png'), // Replace with your logo asset
+          SizedBox(height: 20),
+          Center(child: Image.asset('assets/images/demo.png')),
+
+          SizedBox(height: 30),
+          ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20), // Adjust the radius as needed
+                ),
+              ),
+              minimumSize: MaterialStateProperty.all<Size>(Size(300, 50)), // Set the width and height
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(bottom: 10.0),
-            child: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: JumpingDotsProgressIndicator(
-                    fontSize: 50.0,
-                    numberOfDots: 5,
-                    color: new Color(0xFF00A6FF),
-                    milliseconds: 120,
-                  ),
-                )
-              ],
-            ),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+            },
+            child: Text("Get Started", style: GoogleFonts.lato(color: Colors.black),),
           ),
         ],
       ),
     );
   }
-
-
 }
